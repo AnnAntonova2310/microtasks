@@ -1,25 +1,27 @@
-import React, {MouseEvent} from 'react';
-import ButtonTasks from "./Components/ButtonTasks";
+import React, {MouseEvent, useState} from 'react';
 
 
 function App() {
 
-    const Button1Foo=(subscriber: string, age: number)=>{
-        console.log(subscriber, age)
+    let [a, setA] = useState(1)
+
+    const onClickHandler = () => {
+        setA(++a);
+        console.log(a)
     }
 
-    const Button2Foo=(subscriber: string)=>{
-        console.log(subscriber)
+    const onClickHandler1 = () => {
+        setA(0);
+        console.log(0)
     }
 
-    const Button3Foo=(subscriber: string)=>{
-        console.log(subscriber)
-    }
+
     return (
+
         <div className={'App'}>
-            <ButtonTasks name={"My YouTube channel-1"} callBack={() => Button1Foo('I`m Vasya', 21)}/>
-            <ButtonTasks name={"My YouTube channel-2"} callBack={() => Button2Foo( 'I`m Ivan')}/>
-            <ButtonTasks name={"My YouTube channel-3"} callBack={() => Button3Foo( 'I`m Anya')}/>
+            <h1>{a}</h1>
+            <button onClick={onClickHandler}>number</button>
+            <button onClick={onClickHandler1}>0</button>
         </div>
     )
 
