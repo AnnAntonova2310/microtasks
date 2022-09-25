@@ -25,12 +25,12 @@ function App() {
 
     return (
         <div className={'App'}>
-            {/*<div>*/}
-            {/*    <input/>*/}
-            {/*    <button>+</button>*/}
-            {/*</div>*/}
+            <div>
+                <input/>
+                <button>+</button>
+            </div>
 
-            {/*<FullInput addMessage={addMessage}/>*/}
+            <FullInput addMessage={addMessage}/>
 
             <Input setTitle={setTitle} title={title}/>
             <Button name={'+'} callback={() => addMessage(title)}/>
