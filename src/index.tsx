@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import MicroTasks from "./MicroTasks";
+import MicroTasks from "./Repetition/MicroTasks";
 
 
 ReactDOM.render(<MicroTasks />,  document.getElementById('root'));
