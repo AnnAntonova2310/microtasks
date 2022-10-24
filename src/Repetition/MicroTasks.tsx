@@ -38,7 +38,7 @@ const MicroTasks = () => {
 
     return (
         <div>
-            <Body title={'New Body'}/>
+            {/*<Body title={'New Body'}/>*/}
             <NewComponent students={students} topCars={topCars}/>
         </div>
     );
