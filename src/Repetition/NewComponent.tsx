@@ -28,6 +28,8 @@ export const NewComponent = (props: NewComponentType) => {
         <table>
             <td>
                 {props.topCars.map((c, index)=>{
+
+                    
                     return(
                         <tr>
                             Manufacturer:

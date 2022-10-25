@@ -1,6 +1,7 @@
 import React from 'react';
 import Body from "./Body";
 import {NewComponent} from "./NewComponent";
+import {Button} from "./Button";
 
 export type studentType ={
     id: number
@@ -39,7 +40,8 @@ const MicroTasks = () => {
     return (
         <div>
             {/*<Body title={'New Body'}/>*/}
-            <NewComponent students={students} topCars={topCars}/>
+            {/*<NewComponent students={students} topCars={topCars}/>*/}
+            <Button/>
         </div>
     );
 };
