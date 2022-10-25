@@ -2,6 +2,7 @@ import React from 'react';
 import Body from "./Body";
 import {NewComponent} from "./NewComponent";
 import {Button} from "./Button";
+import UnButton from "./UnButton";
 
 export type studentType ={
     id: number
@@ -37,11 +38,27 @@ const MicroTasks = () => {
         {manufacturer:"Audi",model:'rs6'}
     ]
 
+    const Button1Foo=(subscriber: string, age:number)=>{
+        console.log(subscriber, age)
+    }
+
+    const Button2Foo=(subscriber: string)=>{
+        console.log(subscriber)
+    }
+
+    const DeleteButton=()=>{
+        console.log('Delete')
+    }
+
     return (
         <div>
             {/*<Body title={'New Body'}/>*/}
             {/*<NewComponent students={students} topCars={topCars}/>*/}
-            <Button/>
+            {/*<Button/>*/}
+            <UnButton name={'My channel - 1'} callBack={()=>Button1Foo('Vasya', 21)}/>
+            <UnButton name={'My channel - 2'} callBack={()=>Button2Foo('Ivan')}/>
+            <UnButton name={'Delete'} callBack={DeleteButton}/>
+
         </div>
     );
 };
