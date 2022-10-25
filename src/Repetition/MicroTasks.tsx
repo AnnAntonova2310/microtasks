@@ -53,11 +53,11 @@ const MicroTasks = () => {
     return (
         <div>
             {/*<Body title={'New Body'}/>*/}
-            {/*<NewComponent students={students} topCars={topCars}/>*/}
+            <NewComponent/>
             {/*<Button/>*/}
-            <UnButton name={'My channel - 1'} callBack={()=>Button1Foo('Vasya', 21)}/>
-            <UnButton name={'My channel - 2'} callBack={()=>Button2Foo('Ivan')}/>
-            <UnButton name={'Delete'} callBack={DeleteButton}/>
+            {/*<UnButton name={'My channel - 1'} callBack={()=>Button1Foo('Vasya', 21)}/>*/}
+            {/*<UnButton name={'My channel - 2'} callBack={()=>Button2Foo('Ivan')}/>*/}
+            {/*<UnButton name={'Delete'} callBack={DeleteButton}/>*/}
 
         </div>
     );

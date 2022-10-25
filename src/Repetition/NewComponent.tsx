@@ -1,46 +1,22 @@
-import React from 'react';
-import {studentType, topCarType} from "./MicroTasks";
+import React, {useState} from 'react';
 
 
-type NewComponentType = {
-    students: Array<studentType>
-    topCars: Array<topCarType>
+export const NewComponent = () => {
 
-}
+    let [a, setA]=useState(0)
+    const onClickHandler=()=>{
+        setA(++a)
+        console.log(a)
+    }
 
-
-
-export const NewComponent = (props: NewComponentType) => {
+    const deleteHandler=()=>{
+        setA(0)
+    }
     return (
-        // <ul>
-        //     {props.students.map((s, index) => {
-        //         return (
-        //             <li key={index}>
-        //                 <span>   {s.name} </span>
-        //                 <span>   {s.age} </span>
-        //
-        //             </li>
-        //         )
-        //     })}
-        // </ul>
-
-
-        <table>
-            <td>
-                {props.topCars.map((c, index)=>{
-
-                    
-                    return(
-                        <tr>
-                            Manufacturer:
-                            {c.manufacturer }
-                            Model:
-                            {c.model}
-                        </tr>
-                    )
-                })}
-            </td>
-        </table>
+        <div>
+            <h1>{a}</h1>
+            <button onClick={onClickHandler}>Number</button>
+            <button onClick={deleteHandler}>0</button>
+        </div>
     );
-};
-
+}
