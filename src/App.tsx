@@ -1,120 +1,58 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Todolist} from './Todolist';
-import {v1} from 'uuid';
+import {NewComponent} from "./NewComponent";
 
-export type FilterValuesType = "all" | "active" | "completed";
-type todolistsType = {
-    id: any
-    title: string
-    filter: FilterValuesType
-}
+
+type moneyType='All' | 'Ruble' | 'Dollar'
 
 function App() {
-
-    // let [tasks, setTasks] = useState([
-    //     {id: v1(), title: "HTML&CSS", isDone: true},
-    //     {id: v1(), title: "JS", isDone: true},
-    //     {id: v1(), title: "ReactJS", isDone: false},
-    //     {id: v1(), title: "Rest API", isDone: false},
-    //     {id: v1(), title: "GraphQL", isDone: false},
-    // ]);
-    // let [filter, setFilter] = useState<FilterValuesType>("all");
-
-    let todolistID1 = v1();
-    let todolistID2 = v1();
-
-    let [todolists, setTodolists] = useState<Array<todolistsType>>([
-        {id: todolistID1, title: 'What to learn', filter: 'all'},
-        {id: todolistID2, title: 'What to buy', filter: 'all'},
+    const [money, setMoney] = useState([
+        {banknote: 'dollar', nominal: 100, number: ' a1234567890'},
+        {banknote: 'dollar', nominal: 50, number: ' z1234567890'},
+        {banknote: 'ruble', nominal: 100, number: ' w1234567890'},
+        {banknote: 'dollar', nominal: 100, number: ' e1234567890'},
+        {banknote: 'dollar', nominal: 50, number: ' c1234567890'},
+        {banknote: 'ruble', nominal: 100, number: ' r1234567890'},
+        {banknote: 'dollar', nominal: 50, number: ' x1234567890'},
+        {banknote: 'ruble', nominal: 50, number: ' v1234567890'},
     ])
-
-    let [tasks, setTasks] = useState({
-        [todolistID1]: [
-            {id: v1(), title: "HTML&CSS", isDone: true},
-            {id: v1(), title: "JS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: false},
-            {id: v1(), title: "Rest API", isDone: false},
-            {id: v1(), title: "GraphQL", isDone: false},
-        ],
-        [todolistID2]: [
-            {id: v1(), title: "HTML&CSS2", isDone: true},
-            {id: v1(), title: "JS2", isDone: true},
-            {id: v1(), title: "ReactJS2", isDone: false},
-            {id: v1(), title: "Rest API2", isDone: false},
-            {id: v1(), title: "GraphQL2", isDone: false},
-        ]
-    });
-
-
-    function removeTask(id: string, todolistId: any) {// any!!!
-        let todolistTasks = tasks[todolistId]
-        tasks[todolistId] = todolistTasks.filter(t => t.id != id);
-        setTasks({...tasks});
+        let [filter, setFilter]=useState<moneyType>('All')
+    // let currentMoney=money.filter((filteredMoney)=> filteredMoney.banknote==='ruble')
+    let currentMoney=money
+    if (filter==='Dollar') {
+        currentMoney=money.filter((filteredMoney)=> filteredMoney.banknote==='dollar')
     }
 
-    function addTask(title: string, todolistId: any) {
-        let task = {id: v1(), title: title, isDone: false};
-        let todolistTasks = tasks[todolistId]
-        tasks[todolistId] = [task, ...todolistTasks];
-        setTasks({...tasks});
+    if (filter==='Ruble') {
+        currentMoney=money.filter((filteredMoney)=> filteredMoney.banknote==='ruble')
     }
 
-    function changeStatus(taskId: string, isDone: boolean, todolistId: any) {
-        let todolistTasks = tasks[todolistId]
-        let task = todolistTasks.find(t => t.id === taskId);
-        if (task) {
-            task.isDone = isDone;
-        }
-
-        setTasks({...tasks});
+    const onClickFilterHandler=(filter: moneyType)=>{
+    setFilter(filter)
     }
-
-    function changeFilter(value: FilterValuesType, todolistId: any) {
-        let todolist = todolists.find(todolist => todolist.id === todolistId);
-        if (todolist) {
-            todolist.filter = value;
-            setTodolists([...todolists])
-        }
-    }
-
-    function removeTodoList(id: any) {
-        setTodolists(todolists.filter(todolist => todolist.id !== id))
-        delete tasks[id]
-        setTasks({...tasks})
-    }
-
-
     return (
-        <div className="App">
-            {
-                todolists.map(todolist => {
-                    let allTodolistTasks = tasks[todolist.id]
-                    let tasksForTodoList = allTodolistTasks
+        <>
+            <ul>
+                {currentMoney.map((objFromMoneyArr, index) => {
+                    return (
+                        <li key={index}>
+                            <span> {objFromMoneyArr.banknote}</span>
+                            <span> {objFromMoneyArr.nominal}</span>
+                            <span> {objFromMoneyArr.number}</span>
+                        </li>
+                    )
+                })}
+            </ul>
+            <div style={{marginLeft: '35px'}}>
+            <button onClick={()=>onClickFilterHandler('All')}>All</button>
+            <button onClick={()=>onClickFilterHandler('Ruble')}>Rubles</button>
+            <button onClick={()=>onClickFilterHandler('Dollar')}>Dollars</button>
+            </div>
+        </>
 
-                    if (todolist.filter === 'active') {
-                        tasksForTodoList = allTodolistTasks.filter(task => task.isDone === false)
-                    }
 
-                    if (todolist.filter === 'completed') {
-                        tasksForTodoList = allTodolistTasks.filter(task => task.isDone === true)
-                    }
-                    return <Todolist
-                        key={todolist.id}
-                        id={todolist.id}
-                        title={todolist.title}
-                        tasks={tasksForTodoList}
-                        removeTask={removeTask}
-                        changeFilter={changeFilter}
-                        addTask={addTask}
-                        changeStatus={changeStatus}
-                        filter={todolist.filter}
-                        removeTodoList={removeTodoList}
-                    />
-                })
-            }
-
-        </div>
     );
 }
-            export default App;
+
+export default App;
+
