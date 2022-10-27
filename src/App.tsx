@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {NewComponent} from "./NewComponent";
 
-
-type moneyType='All' | 'Ruble' | 'Dollar'
+export type moneyType='All' | 'Ruble' | 'Dollar'
 
 function App() {
     const [money, setMoney] = useState([
@@ -17,7 +16,6 @@ function App() {
         {banknote: 'ruble', nominal: 50, number: ' v1234567890'},
     ])
         let [filter, setFilter]=useState<moneyType>('All')
-    // let currentMoney=money.filter((filteredMoney)=> filteredMoney.banknote==='ruble')
     let currentMoney=money
     if (filter==='Dollar') {
         currentMoney=money.filter((filteredMoney)=> filteredMoney.banknote==='dollar')
@@ -32,22 +30,23 @@ function App() {
     }
     return (
         <>
-            <ul>
-                {currentMoney.map((objFromMoneyArr, index) => {
-                    return (
-                        <li key={index}>
-                            <span> {objFromMoneyArr.banknote}</span>
-                            <span> {objFromMoneyArr.nominal}</span>
-                            <span> {objFromMoneyArr.number}</span>
-                        </li>
-                    )
-                })}
-            </ul>
-            <div style={{marginLeft: '35px'}}>
-            <button onClick={()=>onClickFilterHandler('All')}>All</button>
-            <button onClick={()=>onClickFilterHandler('Ruble')}>Rubles</button>
-            <button onClick={()=>onClickFilterHandler('Dollar')}>Dollars</button>
-            </div>
+            <NewComponent currentMoney={currentMoney} onClickFilterHandler={onClickFilterHandler}/>
+            {/*<ul>*/}
+            {/*    {currentMoney.map((objFromMoneyArr, index) => {*/}
+            {/*        return (*/}
+            {/*            <li key={index}>*/}
+            {/*                <span> {objFromMoneyArr.banknote}</span>*/}
+            {/*                <span> {objFromMoneyArr.nominal}</span>*/}
+            {/*                <span> {objFromMoneyArr.number}</span>*/}
+            {/*            </li>*/}
+            {/*        )*/}
+            {/*    })}*/}
+            {/*</ul>*/}
+            {/*<div style={{marginLeft: '35px'}}>*/}
+            {/*<button onClick={()=>onClickFilterHandler('All')}>All</button>*/}
+            {/*<button onClick={()=>onClickFilterHandler('Ruble')}>Rubles</button>*/}
+            {/*<button onClick={()=>onClickFilterHandler('Dollar')}>Dollars</button>*/}
+            {/*</div>*/}
         </>
 
 
