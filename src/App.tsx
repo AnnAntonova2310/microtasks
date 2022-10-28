@@ -1,53 +1,30 @@
 import React, {useState} from 'react';
 import './App.css';
 import {NewComponent} from "./NewComponent";
+import {FullInput} from "./Repetition/FullInput";
 
 export type moneyType='All' | 'Ruble' | 'Dollar'
 
 function App() {
-    const [money, setMoney] = useState([
-        {banknote: 'dollar', nominal: 100, number: ' a1234567890'},
-        {banknote: 'dollar', nominal: 50, number: ' z1234567890'},
-        {banknote: 'ruble', nominal: 100, number: ' w1234567890'},
-        {banknote: 'dollar', nominal: 100, number: ' e1234567890'},
-        {banknote: 'dollar', nominal: 50, number: ' c1234567890'},
-        {banknote: 'ruble', nominal: 100, number: ' r1234567890'},
-        {banknote: 'dollar', nominal: 50, number: ' x1234567890'},
-        {banknote: 'ruble', nominal: 50, number: ' v1234567890'},
+    const [message, setMessage] = useState([
+        {message: 'message1'},
+        {message: 'message2'},
+        {message: 'message3'},
     ])
-        let [filter, setFilter]=useState<moneyType>('All')
-    let currentMoney=money
-    if (filter==='Dollar') {
-        currentMoney=money.filter((filteredMoney)=> filteredMoney.banknote==='dollar')
-    }
 
-    if (filter==='Ruble') {
-        currentMoney=money.filter((filteredMoney)=> filteredMoney.banknote==='ruble')
-    }
-
-    const onClickFilterHandler=(filter: moneyType)=>{
-    setFilter(filter)
-    }
     return (
-        <>
-            <NewComponent currentMoney={currentMoney} onClickFilterHandler={onClickFilterHandler}/>
-            {/*<ul>*/}
-            {/*    {currentMoney.map((objFromMoneyArr, index) => {*/}
-            {/*        return (*/}
-            {/*            <li key={index}>*/}
-            {/*                <span> {objFromMoneyArr.banknote}</span>*/}
-            {/*                <span> {objFromMoneyArr.nominal}</span>*/}
-            {/*                <span> {objFromMoneyArr.number}</span>*/}
-            {/*            </li>*/}
-            {/*        )*/}
-            {/*    })}*/}
-            {/*</ul>*/}
-            {/*<div style={{marginLeft: '35px'}}>*/}
-            {/*<button onClick={()=>onClickFilterHandler('All')}>All</button>*/}
-            {/*<button onClick={()=>onClickFilterHandler('Ruble')}>Rubles</button>*/}
-            {/*<button onClick={()=>onClickFilterHandler('Dollar')}>Dollars</button>*/}
+        <div className={'App'}>
+            {/*<div>*/}
+            {/*    <input/>*/}
+            {/*    <button>+</button>*/}
             {/*</div>*/}
-        </>
+            <FullInput/>
+            {message.map((el, index)=> {
+                return (
+                    <div key={index}>{el.message}</div>
+                )
+            })}
+        </div>
 
 
     );
