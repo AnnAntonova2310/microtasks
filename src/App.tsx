@@ -3,8 +3,6 @@ import './App.css';
 import {NewComponent} from "./NewComponent";
 import {FullInput} from "./Repetition/FullInput";
 
-export type moneyType='All' | 'Ruble' | 'Dollar'
-
 function App() {
     const [message, setMessage] = useState([
         {message: 'message1'},
@@ -18,7 +16,7 @@ function App() {
             {/*    <input/>*/}
             {/*    <button>+</button>*/}
             {/*</div>*/}
-            <FullInput/>
+            <FullInput setMessage={setMessage} message={message}/>
             {message.map((el, index)=> {
                 return (
                     <div key={index}>{el.message}</div>

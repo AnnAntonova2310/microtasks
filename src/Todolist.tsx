@@ -28,6 +28,7 @@ export function Todolist(props: PropsType) {
             setTitle("");
         } else {
             setError("Title is required");
+
         }
     }
 
