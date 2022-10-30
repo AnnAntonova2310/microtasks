@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import './App.css';
 import {NewComponent} from "./NewComponent";
 import {FullInput} from "./Repetition/FullInput";
+import {Input} from "./Repetition/Input";
+import {Button} from "./Repetition/Button";
 
 function App() {
     const [message, setMessage] = useState([
@@ -10,11 +12,16 @@ function App() {
         {message: 'message3'},
     ])
 
-    const addTitle=(title: string)=>{
-        let newMessage = {message: title};
-            setMessage([newMessage, ...message])
+    let [title, setTitle]=useState('')
 
-        console.log('+')
+    const addMessage = (title: string)=> {
+        setMessage([{message: title},...message])
+
+    }
+
+    const callBackButtonHandler=()=>{
+        addMessage(title)
+        setTitle('')
     }
 
     return (
@@ -23,7 +30,10 @@ function App() {
             {/*    <input/>*/}
             {/*    <button>+</button>*/}
             {/*</div>*/}
-            <FullInput addTitle={addTitle}  messages={message} />
+            {/*<FullInput addMessage={addMessage} message={message} />*/}
+
+            <Input setTitle={setTitle} title={title}/>
+            <Button name={'+'} callBackButtonHandler={callBackButtonHandler}/>
             {message.map((el, index)=> {
                 return (
                     <div key={index}>{el.message}</div>

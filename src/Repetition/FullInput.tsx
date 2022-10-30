@@ -5,16 +5,16 @@ import React, {ChangeEvent, useState} from 'react';
 //     message: Array<{message: string}>
 // }
 
-type inputType={
-    messages: Array<titlesType>
-    addTitle: (title: string)=>void
+type FullInputType = {
+    message: Array<messageType>
+    addMessage: (title: string) => void
 }
 
-type titlesType={
+type messageType = {
     message: string
 }
 
-export const FullInput = (props: inputType) => {
+export const FullInput = (props: FullInputType) => {
 
     let [title, setTitle] = useState('')
 
@@ -22,16 +22,14 @@ export const FullInput = (props: inputType) => {
         setTitle(event.currentTarget.value)
     }
 
-    const onClickHandler=(title: string)=>{
-        // props.setMessage([...props.message, {message: title}])
-        // setTitle('')
-        props.addTitle(title)
+    const onClickHandler = (title: string) => {
+        props.addMessage(title)
         setTitle('')
     }
     return (
         <div>
             <input value={title} onChange={onChangeInputHandler}/>
-            <button onClick={()=>{onClickHandler(title)}}>+</button>
+            <button onClick={() => {onClickHandler(title)}}>+</button>
         </div>
     );
 };
